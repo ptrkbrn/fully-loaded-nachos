@@ -8,13 +8,14 @@ const pool = new Pool({
   port: 5432,
 })
 
-const getQuotes = (request, response) => {
+const search = (request, response) => {
   const search = url.parse(request.url,true).query["q"];
-  pool.query(`SELECT * FROM screenshots \n
-              LEFT JOIN subtitles ON screenshots.timestamp \n
-              BETWEEN subtitles.time_start \n
-              AND subtitles.time_end \n
-              WHERE subtitles.text ILIKE $1;`,
+  pool.query(`SELECT * FROM screenshots
+              LEFT JOIN subtitles ON screenshots.timestamp
+              BETWEEN subtitles.time_start
+              AND subtitles.time_end
+              WHERE subtitles.episode = screenshot.episode
+              AND subtitles.text ILIKE $1;`,
               [`%${search}%`], (error, results) => {
     if (error) {
       throw error
