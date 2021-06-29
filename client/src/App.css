@@ -1,3 +1,10 @@
+@font-face {
+	font-family: "Cooper Black";
+	src: url("./fonts/CooperBlack.woff2") format("woff2"),
+		 url("./fonts/CooperBlack.woff") format("woff"),
+		 url("./fonts/CooperBlack.ttf") format("truetype");
+  }
+
 .App {
   text-align: center;
 }

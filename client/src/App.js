@@ -14,6 +14,7 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">
+        <h1 style={{fontFamily: 'Cooper Black'}}>I Think You Should Meme</h1>
         <SearchBar history={window.history} setResults={setResults} />
       </header>
         <ImageContainer images={results} />

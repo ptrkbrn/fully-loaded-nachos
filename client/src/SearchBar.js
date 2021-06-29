@@ -1,4 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+
+
+const StyledInput = styled.input`
+border-radius: 50px;
+height: 2em;
+width: 80%;
+margin: .75em;
+padding: .5em 2em;
+border: none;
+`
+
 
 function SearchBar(props) {
     const [query, setQuery] = useState(null)
@@ -41,26 +54,9 @@ function SearchBar(props) {
             props.setResults([])
         }
     }
-    // const imgs =
-    //     results.length > 0 ? 
-    //     Array.from(results).map(result => {
-    //         return (
-    //             <div dispaly="grid">
-    //                 <img height="auto" width="500px" margin="10px" src={result.url} />
-    //                 <p>{result.text}</p>
-    //             </div>
-    //         )
-
-    //     }) :
-    //     query ?
-    //     "No results found!" :
-    //     "Results appear here."
         
     return(
-        <div>
-            <input onChange={onChange} type="text"></input>
-            {/* {imgs} */}
-        </div>
+            <StyledInput onChange={onChange} type="text"></StyledInput>
     )
 }
 
