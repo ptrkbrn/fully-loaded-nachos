@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -14,14 +15,15 @@ border: none;
 
 
 function SearchBar(props) {
-    const [query, setQuery] = useState(null)
-    // const [results, setResults] = useState([])
+    const [query, setQuery] = useState(null);
+    const location = useLocation();
     useEffect(() => {
         const url = new URL(window.location);
+        console.log(url);
         url.searchParams.set('q', query);
         console.log(query === null)
         console.log(query)
-        if (query !== null) {
+        if (query !== null && location.pathname === "/") {
            window.history.pushState({}, '', url);
            if (query.length > 2) {
                 fetch(`http://localhost:9000/search?${url.searchParams}`, {
@@ -45,8 +47,9 @@ function SearchBar(props) {
             url.searchParams.delete('q');
             window.history.pushState({}, '', url);
         }
-    }, [query])
+    }, [query, location])
     const onChange = (e) => {
+        console.log(location);
         if (e.target.value.length > 0) {
             setQuery(e.target.value)
         } else {

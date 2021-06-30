@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import ImageContainer from './ImageContainer';
@@ -22,7 +22,9 @@ function App(props) {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1 style={{fontFamily: 'Cooper Black'}}>I Think You Should Meme</h1>
+          <Link to="/">
+            <h1 style={{fontFamily: 'Cooper Black'}}>I Think You Should Meme</h1>
+          </Link>
           <SearchBar history={window.history} setResults={setResults} />
         </header>
         <Switch>
