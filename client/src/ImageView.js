@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import ImageContainer from './ImageContainer';
+import Button from './Button';
 
 function ImageView(props) {
     console.log(props.images);
@@ -22,6 +23,7 @@ function ImageView(props) {
                 <img src={currentImage.url} />
                 <p contentEditable>{currentImage.text}</p>
             </div>
+            <Button onClick={() => alert("Clicked!")}>Download</Button>
             <ImageContainer images={relatedImages} />
         </div>
     )

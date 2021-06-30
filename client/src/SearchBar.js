@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 
 
@@ -16,7 +16,8 @@ border: none;
 
 function SearchBar(props) {
     const [query, setQuery] = useState(null);
-    const location = useLocation();
+    let location = useLocation();
+    let history = useHistory();
     useEffect(() => {
         const url = new URL(window.location);
         console.log(url);
@@ -49,7 +50,7 @@ function SearchBar(props) {
         }
     }, [query, location])
     const onChange = (e) => {
-        console.log(location);
+        history.replace("/");
         if (e.target.value.length > 0) {
             setQuery(e.target.value)
         } else {
