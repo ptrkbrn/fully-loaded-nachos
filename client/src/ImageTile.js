@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledImage = styled.img`
     width: 100%;
@@ -8,7 +9,9 @@ const StyledImage = styled.img`
 
 function ImageTile(props) {
     return (
-        <StyledImage src={props.data.url} />
+        <Link to={`/screenshots/${props.data.episode}/${props.data.timestamp}`}>
+            <StyledImage src={props.data.url} />
+        </Link>
     )
 }
 
