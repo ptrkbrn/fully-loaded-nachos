@@ -1,6 +1,14 @@
+import styled from 'styled-components';
+
+const StyledImage = styled.img`
+    width: 100%;
+    max-height: 100%;
+
+`
+
 function ImageTile(props) {
     return (
-        <img src={props.data.url} />
+        <StyledImage src={props.data.url} />
     )
 }
 
