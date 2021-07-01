@@ -9,6 +9,8 @@ import {
 import SearchBar from './SearchBar';
 import ImageContainer from './ImageContainer';
 import ImageView from './ImageView';
+import Header from './Header';
+import Title from './Title';
 
 function App(props) {
   // useEffect(() => {
@@ -21,12 +23,12 @@ function App(props) {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <Link to="/">
-            <h1 style={{fontFamily: 'Cooper Black'}}>I Think You Should Meme</h1>
+        <Header className="App-header">
+          <Link style={{textDecoration: 'none'}} to="/">
+            <Title>I Think You Should Meme</Title>
           </Link>
           <SearchBar history={window.history} setResults={setResults} />
-        </header>
+        </Header>
         <Switch>
           <Route path="/screenshots/:episode/:timestamp">
             <ImageView images={results} />

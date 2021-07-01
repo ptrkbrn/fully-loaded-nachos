@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import { toJpeg, toPng } from 'html-to-image';
+import download from 'downloadjs';
 import ImageContainer from './ImageContainer';
 import Caption from './Caption';
 import Button from './Button';
+import { Grid, Row, Col } from './Layout';
 
 function ImageView(props) {
     console.log(props.images);
@@ -18,15 +21,42 @@ function ImageView(props) {
     useEffect(()=> {
         setRelatedImages((props.images.filter(image => image.text === currentImage.text && image.timestamp !== currentImage.timestamp)));
     }, [currentImage]);
+    function handleSubmit() {
+        console.log(document.getElementById('target-image'));
+        const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`
+        toJpeg(document.getElementById('target-image'), { quality: 0.95 })
+        .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.download = `${filename}.jpeg`;
+            link.href = dataUrl;
+            link.click();
+        });
+        // toPng(document.getElementById('target-image'))
+        // .then(function (dataUrl) {
+        //     download(dataUrl, 'my-node.png');
+    //   });
+    }
     return (
         <div>
             <Link to="/">Back to search</Link>
             <h1>IMAGE VIEW!!</h1>
-            <div>
-                <img src={currentImage.url} />
-                <Caption display={captionDisplay} font={captionFont} contentEditable>{currentImage.text}</Caption>
-            </div>
-            <Button onClick={() => alert("Clicked!")}>Download</Button>
+            <Grid>
+                <Row>
+                    <Col id="target-image">
+                    <img src={currentImage.url} style={{ width: '100%' }} />
+                    <Caption display={captionDisplay} font={captionFont} contentEditable>{currentImage.text}</Caption>
+                    </Col>
+                    <Col>
+                        <div>
+                            <input type="radio" />
+                        </div>
+                        <div>
+                            <Button onClick={() => handleSubmit()}>Download</Button>
+                        </div>
+                    </Col>
+                </Row>
+            </Grid>
+            
             <ImageContainer images={relatedImages} />
         </div>
     )
