@@ -23,3 +23,8 @@ export const Col = styled.div`
         width: 50%;
     }
 `
+
+export const ImgCol = styled(Col)`
+    position: relative;
+    text-align: center;
+`

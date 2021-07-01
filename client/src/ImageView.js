@@ -5,7 +5,7 @@ import download from 'downloadjs';
 import ImageContainer from './ImageContainer';
 import Caption from './Caption';
 import Button from './Button';
-import { Grid, Row, Col } from './Layout';
+import { Grid, Row, Col, ImgCol } from './Layout';
 
 function ImageView(props) {
     console.log(props.images);
@@ -42,10 +42,10 @@ function ImageView(props) {
             <h1>IMAGE VIEW!!</h1>
             <Grid>
                 <Row>
-                    <Col id="target-image">
-                    <img src={currentImage.url} style={{ width: '100%' }} />
-                    <Caption display={captionDisplay} font={captionFont} contentEditable>{currentImage.text}</Caption>
-                    </Col>
+                    <ImgCol id="target-image">
+                        <img src={currentImage.url} style={{ width: '100%' }} />
+                        <Caption display={captionDisplay} font={captionFont} contentEditable>{currentImage.text}</Caption>
+                    </ImgCol>
                     <Col>
                         <div>
                             <input type="radio" />
