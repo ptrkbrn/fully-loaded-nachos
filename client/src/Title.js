@@ -5,6 +5,6 @@ const Title = styled.h1`
     text-decoration: none;
     font-size: 1.5em;
     font-family: 'Cooper Black'
-`
+`;
 
 export default Title;

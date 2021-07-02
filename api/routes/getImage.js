@@ -10,16 +10,15 @@ const pool = new Pool({
   port: 5432,
 })
 
-router.get("/", function(req, res) {
-    const search = url.parse(req.url,true).query["q"];
-    console.log(req);
+router.get("/screenshots/:episode/:timestamp", function(req, res) {
+    const timestamp = req.params.timestamp
     pool.query(`SELECT * FROM screenshots
                 LEFT JOIN subtitles ON screenshots.timestamp
                 BETWEEN subtitles.time_start
                 AND subtitles.time_end
                 WHERE subtitles.episode = screenshots.episode
-                AND subtitles.text ILIKE $1`,
-                [`%${search}%`], (error, results) => {
+                AND screenshots.timestamp = $1`,
+                [timestamp], (error, results) => {
       if (error) {
         throw error
       }

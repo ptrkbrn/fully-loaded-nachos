@@ -1,5 +1,7 @@
-import ImageTile from './ImageTile';
+import { React } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import ImageTile from './ImageTile';
 
 const StyledContainer = styled.div`
     display: grid;
@@ -10,21 +12,21 @@ const StyledContainer = styled.div`
     @media only screen and (min-width: 768px) {
         grid-template-columns: repeat(4, 1fr)
     }
-`
+`;
 
 function ImageContainer(props) {
-    const images = props.images.map(image => {
-        return <ImageTile data={image} />
-    })
+  const { images } = props;
+  const imagesArr = images.map((image) => <ImageTile data={image} />);
 
-    console.log(props.images);
-    console.log(images);
-    return (
-        <StyledContainer>
-            {images}
-        </StyledContainer>
+  return (
+    <StyledContainer>
+      {imagesArr}
+    </StyledContainer>
 
-    )
+  );
 }
+ImageContainer.propTypes = {
+  images: PropTypes.arrayOf.isRequired,
+};
 
 export default ImageContainer;

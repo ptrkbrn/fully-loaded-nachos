@@ -11,6 +11,6 @@ const Header = styled.header`
         flex-direction: row;
     }
 
-`
+`;
 
 export default Header;

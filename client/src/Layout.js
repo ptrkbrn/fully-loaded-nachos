@@ -6,7 +6,7 @@ export const Grid = styled.div`
     @media only screen and (min-width: 768px) {
         width: 90%;
     }
-`
+`;
 
 export const Row = styled.div`
     display: flex;
@@ -15,16 +15,16 @@ export const Row = styled.div`
     @media only screen and (min-width: 768px) {
         flex-direction: row;
     }
-`
+`;
 
 export const Col = styled.div`
     width: 100%;
     @media only screen and (min-width: 768px) {
-        width: 50%;
+        min-width: 50%;
     }
-`
+`;
 
 export const ImgCol = styled(Col)`
     position: relative;
     text-align: center;
-`
+`;
