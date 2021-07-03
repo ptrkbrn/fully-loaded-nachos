@@ -5,28 +5,26 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
-import SearchBar from './SearchBar';
-import ImageContainer from './ImageContainer';
+import Search from './Search';
 import ImageView from './ImageView';
 import Header from './Header';
-import Title from './Title';
 
 function App() {
   const [results, setResults] = useState([]);
+  const [searching, setSearching] = useState(false);
   return (
     <Router>
       <GlobalStyle />
       <div className="App">
-        <Header setResults={setResults} />
+        <Header setResults={setResults} setSearching={setSearching} />
         <Switch>
           <Route path="/screenshots/:episode/:timestamp">
             <ImageView images={results} />
           </Route>
           <Route exact path="/">
-            <ImageContainer images={results} />
+            <Search results={results} searching={searching} />
           </Route>
         </Switch>
       </div>

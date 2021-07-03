@@ -26,7 +26,7 @@ function ControlPanel(props) {
           <Toggle
             checked={captionDisplay === 'block'}
             onChange={() => setCaptionDisplay(captionDisplay === 'block' ? 'none' : 'block')}
-            labelLeft="Show text"
+            labelLeft="Show caption"
           />
         </ToggleWrapper>
       </div>

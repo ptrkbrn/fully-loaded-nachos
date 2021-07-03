@@ -14,7 +14,9 @@ border: none;
 `;
 
 function SearchBar(props) {
-  const { query, setQuery, setResults } = props;
+  const {
+    query, setQuery, setResults, setSearching,
+  } = props;
   const location = useLocation();
   const history = useHistory();
   useEffect(() => {
@@ -25,6 +27,7 @@ function SearchBar(props) {
       window.history.pushState({}, '', url);
       // fetches search results from API
       if (query.length > 2) {
+        setSearching(true);
         fetch(`http://localhost:9000/search?${url.searchParams}`, {
           mode: 'cors',
           headers: {
@@ -36,6 +39,7 @@ function SearchBar(props) {
           .then((res) => res.json())
           .then((data) => {
             setResults(data);
+            setSearching(false);
           })
           .catch((error) => console.log(error));
       }
@@ -70,6 +74,7 @@ SearchBar.propTypes = {
   query: PropTypes.string.isRequired,
   setQuery: PropTypes.func.isRequired,
   setResults: PropTypes.func.isRequired,
+  setSearching: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

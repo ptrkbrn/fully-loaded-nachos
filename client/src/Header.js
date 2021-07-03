@@ -9,7 +9,8 @@ import SearchBar from './SearchBar';
 const StyledHeader = styled.header`
     background-color: #282c34;
     display: flex;
-    flex-directon: column;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
@@ -20,7 +21,7 @@ const StyledHeader = styled.header`
 
 function Header(props) {
   const [query, setQuery] = useState(null);
-  const { setResults } = props;
+  const { setResults, setSearching } = props;
   return (
     <StyledHeader className="App-header">
       <Title setResults={setResults} setQuery={setQuery} query={query} />
@@ -29,12 +30,14 @@ function Header(props) {
         setResults={setResults}
         query={query}
         setQuery={setQuery}
+        setSearching={setSearching}
       />
     </StyledHeader>
   );
 }
 Header.propTypes = {
   setResults: PropTypes.func.isRequired,
+  setSearching: PropTypes.func.isRequired,
 };
 
 export default Header;
