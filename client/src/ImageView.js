@@ -6,13 +6,10 @@ import styled from 'styled-components';
 import { toJpeg } from 'html-to-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import Toggle from 'react-styled-toggle';
-import ToggleWrapper from './ToggleWrapper';
 import StyledLink from './StyledLink';
 import ImageContainer from './ImageContainer';
 import ControlPanel from './ControlPanel';
 import Caption from './Caption';
-import Button from './Button';
 import {
   Grid, Row, ImgCol,
 } from './Layout';
@@ -54,10 +51,6 @@ function ImageView(props) {
         link.href = dataUrl;
         link.click();
       });
-    // toPng(document.getElementById('target-image'))
-    // .then(function (dataUrl) {
-    //     download(dataUrl, 'my-node.png');
-    //   });
   }
   return (
     <ImageViewSection>
