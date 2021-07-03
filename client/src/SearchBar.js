@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -13,10 +14,9 @@ border: none;
 `;
 
 function SearchBar(props) {
-  const [query, setQuery] = useState(null);
+  const { query, setQuery, setResults } = props;
   const location = useLocation();
   const history = useHistory();
-  const { setResults } = props;
   useEffect(() => {
     const url = new URL(window.location);
     url.searchParams.set('q', query);
@@ -58,10 +58,16 @@ function SearchBar(props) {
   };
 
   return (
-    <StyledInput onChange={onChange} type="text" />
+    <StyledInput
+      onChange={onChange}
+      type="text"
+      placeholder="Search by quote (e.g., 'Stanzo brand fedoras,' 'Taffy Lee Fubbins,' 'Shut up, Paul.'"
+    />
   );
 }
 SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
   setResults: PropTypes.func.isRequired,
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import './App.css';
 import React, { useState } from 'react';
 import {
@@ -15,17 +16,11 @@ import Title from './Title';
 
 function App() {
   const [results, setResults] = useState([]);
-
   return (
     <Router>
       <GlobalStyle />
       <div className="App">
-        <Header className="App-header">
-          <Link style={{ textDecoration: 'none' }} to="/">
-            <Title>I Think You Should Meme</Title>
-          </Link>
-          <SearchBar history={window.history} setResults={setResults} />
-        </Header>
+        <Header setResults={setResults} />
         <Switch>
           <Route path="/screenshots/:episode/:timestamp">
             <ImageView images={results} />
