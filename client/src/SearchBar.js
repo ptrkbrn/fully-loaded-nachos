@@ -21,7 +21,7 @@ function SearchBar(props) {
     const url = new URL(window.location);
     url.searchParams.set('q', query);
     // updates url query param based on search term
-    if (query !== null && location.pathname === '/') {
+    if (query !== null) {
       window.history.pushState({}, '', url);
       // fetches search results from API
       if (query.length > 2) {
@@ -43,6 +43,7 @@ function SearchBar(props) {
       // if no search term, remove query string.
       url.searchParams.delete('q');
       window.history.pushState({}, '', url);
+      document.querySelector('input[type="text"]').value = '';
     }
   }, [query, location]);
   const onChange = (e) => {

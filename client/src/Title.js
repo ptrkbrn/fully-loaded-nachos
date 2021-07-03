@@ -16,6 +16,7 @@ function Title(props) {
   function handleClick() {
     setResults([]);
     setQuery(null);
+
   };
   return (
     <Link style={{ textDecoration: 'none' }} to="/">

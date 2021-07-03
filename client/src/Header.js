@@ -23,7 +23,7 @@ function Header(props) {
   const { setResults } = props;
   return (
     <StyledHeader className="App-header">
-      <Title setResults={setResults} setQuery={setQuery} />
+      <Title setResults={setResults} setQuery={setQuery} query={query} />
       <SearchBar
         history={window.history}
         setResults={setResults}

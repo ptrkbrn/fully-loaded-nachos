@@ -31,11 +31,15 @@ function ImageView(props) {
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
+  // sets current image
   useEffect(() => {
     setCurrentImage(images.filter(
       (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
     )[0]);
+    // returns to top of page
+    window.scrollTo(0, 0);
   }, [location]);
+  // sets related images
   useEffect(() => {
     setRelatedImages((images.filter(
       (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
