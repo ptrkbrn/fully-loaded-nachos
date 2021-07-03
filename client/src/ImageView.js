@@ -45,6 +45,7 @@ function ImageView(props) {
     )));
   }, [currentImage]);
   function handleSubmit() {
+    // saves image as jpeg
     const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`;
     toJpeg(document.getElementById('target-image'), { quality: 0.95 })
       .then((dataUrl) => {
@@ -77,35 +78,15 @@ function ImageView(props) {
               {currentImage.text}
             </Caption>
           </ImgCol>
-          <ControlPanel>
-            <div>
-              <ToggleWrapper>
-                <Toggle
-                  checked={captionDisplay === 'block'}
-                  onChange={() => setCaptionDisplay(captionDisplay === 'block' ? 'none' : 'block')}
-                  labelLeft="Show text"
-                />
-              </ToggleWrapper>
-            </div>
-            <div>
-              { captionDisplay === 'block'
-                && (
-                <ToggleWrapper>
-                  <Toggle
-                    checked={captionFont === 'Cooper Black'}
-                    onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Arial Black' : 'Cooper Black')}
-                    labelLeft="Fancy font"
-                  />
-                </ToggleWrapper>
-                )}
-            </div>
-            <div style={{ width: '100%' }}>
-              <Button onClick={() => handleSubmit()}>Download</Button>
-            </div>
-          </ControlPanel>
+          <ControlPanel
+            captionDisplay={captionDisplay}
+            setCaptionDisplay={setCaptionDisplay}
+            captionFont={captionFont}
+            setCaptionFont={setCaptionFont}
+            handleSubmit={handleSubmit}
+          />
         </Row>
       </Grid>
-
       <ImageContainer images={relatedImages} />
     </ImageViewSection>
   );

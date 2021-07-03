@@ -20,8 +20,10 @@ function SearchBar(props) {
   useEffect(() => {
     const url = new URL(window.location);
     url.searchParams.set('q', query);
+    // updates url query param based on search term
     if (query !== null && location.pathname === '/') {
       window.history.pushState({}, '', url);
+      // fetches search results from API
       if (query.length > 2) {
         fetch(`http://localhost:9000/search?${url.searchParams}`, {
           mode: 'cors',
@@ -38,15 +40,18 @@ function SearchBar(props) {
           .catch((error) => console.log(error));
       }
     } else {
+      // if no search term, remove query string.
       url.searchParams.delete('q');
       window.history.pushState({}, '', url);
     }
   }, [query, location]);
   const onChange = (e) => {
+    // live search, sets query as text in search bar changes
     history.replace('/');
     if (e.target.value.length > 0) {
       setQuery(e.target.value);
     } else {
+    // if no search term, clear query and results.
       setQuery(null);
       setResults([]);
     }
