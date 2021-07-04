@@ -20,7 +20,6 @@ const ImageViewSection = styled.section`
 `;
 
 function ImageView() {
-  // let images;
   const [currentImage, setCurrentImage] = useState({});
   const [relatedImages, setRelatedImages] = useState([]);
   const [captionDisplay, setCaptionDisplay] = useState('block');
@@ -38,27 +37,13 @@ function ImageView() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCurrentImage(data.filter((datum) => datum.timestamp === parseInt(window.location.pathname.split('/')[3], 10))[0]);
-        setRelatedImages(data.filter((datum) => datum.timestamp !== parseInt(window.location.pathname.split('/')[3], 10)));
-        console.log(`Current url: ${currentImage.url}`);
-        // images = data;
+        // sets current image based on api response
+        setCurrentImage(data.filter((datum) => datum.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10))[0]);
+        // sets related images
+        setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
       })
       .catch((error) => console.log(`Error: ${error}`));
   }, [location]);
-  // sets current image
-  // useEffect(() => {
-  //   setCurrentImage(images.filter(
-  //     (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
-  //   )[0]);
-  //   // returns to top of page
-  //   window.scrollTo(0, 0);
-  // }, [location]);
-  // // sets related images
-  // useEffect(() => {
-  //   setRelatedImages((images.filter(
-  //     (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
-  //   )));
-  // }, [currentImage]);
   function handleSubmit() {
     // saves image as jpeg
     const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`;

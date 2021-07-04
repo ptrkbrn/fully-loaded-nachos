@@ -13,7 +13,7 @@ const StyledImage = styled.img`
 function ImageTile(props) {
   const { data } = props;
   return (
-    <Link to={`/screenshots/${data.episode}/${data.timestamp}`}>
+    <Link to={`/screenshots/${data.episode}/${data.screenshot_key}`}>
       <StyledImage src={data.url} />
     </Link>
   );

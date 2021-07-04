@@ -12,8 +12,8 @@ const pool = new Pool({
   port: 5432,
 });
 
-router.get('/:episode/:timestamp', (req, res) => {
-  const { episode, timestamp } = req.params;
+router.get('/:episode/:key', (req, res) => {
+  const { episode, key } = req.params;
 
   let caption;
 
@@ -28,8 +28,8 @@ router.get('/:episode/:timestamp', (req, res) => {
   AND subtitles.time_end
   WHERE screenshots.episode = $1
   AND subtitles.episode = screenshots.episode
-  AND screenshots.timestamp = $2`,
-  [episode, timestamp],
+  AND screenshots.screenshot_key = $2`,
+  [episode, key],
   (error, results) => {
     if (error) {
       throw error;
