@@ -23,7 +23,7 @@ function SearchBar(props) {
     const url = new URL(window.location);
     url.searchParams.set('q', query);
     // updates url query param based on search term
-    if (query !== null) {
+    if (query !== null && location.pathname === '/') {
       window.history.pushState({}, '', url);
       // fetches search results from API
       if (query.length > 2) {

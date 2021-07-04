@@ -7,9 +7,10 @@ const Button = styled.button`
     margin: 1em;
     border: none;
     color: white;
+    cursor: pointer;
     -webkit-text-stroke: 1px black;
     :hover {
-        text-shadow: -2px 2px 0px black;
+        text-shadow: -4px 4px 0px black;
     }
 `;
 

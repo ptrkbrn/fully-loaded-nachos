@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Caption = styled.p`
     color: white;
-    font-size: 1.3em;
+    font-size: 1.4em;
     position: absolute;
     margin: 0;
     top: 80%;
@@ -12,6 +12,9 @@ const Caption = styled.p`
     font-family: ${(props) => props.font};
     -webkit-text-stroke: 1px black;
     display: ${(props) => props.display};
+    @media only screen and (min-width: 830px) {
+        font-size: 1.8em;
+    }
 `;
 
 export default Caption;

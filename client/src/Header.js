@@ -2,7 +2,6 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Title from './Title';
 import SearchBar from './SearchBar';
 
@@ -14,8 +13,10 @@ const StyledHeader = styled.header`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    box-sizing: border-box;
     @media only screen and (min-width: 768px) {
         flex-direction: row;
+        padding: 1em;
     }
 `;
 

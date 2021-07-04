@@ -50,9 +50,9 @@ function ControlPanel(props) {
 }
 ControlPanel.propTypes = {
   captionDisplay: PropTypes.string.isRequired,
-  setCaptionDisplay: PropTypes.string.isRequired,
+  setCaptionDisplay: PropTypes.func.isRequired,
   captionFont: PropTypes.string.isRequired,
-  setCaptionFont: PropTypes.string.isRequired,
+  setCaptionFont: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 

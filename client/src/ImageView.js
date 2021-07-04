@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
 import { React, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { toJpeg } from 'html-to-image';
@@ -20,31 +19,46 @@ const ImageViewSection = styled.section`
   align-items: flex-start;
 `;
 
-function ImageView(props) {
-  const { images } = props;
-  const [currentImage, setCurrentImage] = useState(images.filter(
-    (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
-  )[0]);
-  const [relatedImages, setRelatedImages] = useState(images.filter(
-    (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
-  ));
+function ImageView() {
+  // let images;
+  const [currentImage, setCurrentImage] = useState({});
+  const [relatedImages, setRelatedImages] = useState([]);
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
-  // sets current image
+  // on page load, calls API and gets page data
   useEffect(() => {
-    setCurrentImage(images.filter(
-      (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
-    )[0]);
-    // returns to top of page
-    window.scrollTo(0, 0);
+    console.log('fetching!');
+    fetch(`http://localhost:9000${window.location.pathname}`, {
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentImage(data.filter((datum) => datum.timestamp === parseInt(window.location.pathname.split('/')[3], 10))[0]);
+        setRelatedImages(data.filter((datum) => datum.timestamp !== parseInt(window.location.pathname.split('/')[3], 10)));
+        console.log(`Current url: ${currentImage.url}`);
+        // images = data;
+      })
+      .catch((error) => console.log(`Error: ${error}`));
   }, [location]);
-  // sets related images
-  useEffect(() => {
-    setRelatedImages((images.filter(
-      (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
-    )));
-  }, [currentImage]);
+  // sets current image
+  // useEffect(() => {
+  //   setCurrentImage(images.filter(
+  //     (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
+  //   )[0]);
+  //   // returns to top of page
+  //   window.scrollTo(0, 0);
+  // }, [location]);
+  // // sets related images
+  // useEffect(() => {
+  //   setRelatedImages((images.filter(
+  //     (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
+  //   )));
+  // }, [currentImage]);
   function handleSubmit() {
     // saves image as jpeg
     const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`;
@@ -88,8 +102,5 @@ function ImageView(props) {
     </ImageViewSection>
   );
 }
-ImageView.propTypes = {
-  images: PropTypes.arrayOf.isRequired,
-};
 
 export default ImageView;

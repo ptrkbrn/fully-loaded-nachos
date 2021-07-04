@@ -14,9 +14,8 @@ const pool = new Pool({
 
 router.get('/', (req, res) => {
   const search = url.parse(req.url, true).query.q;
-  // replace punctuation with '%' for better matching.
+  // replace punctuation and whitespace with '%' for broader matching.
   const scrubbedSearch = search.replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
-  console.log(scrubbedSearch);
   // console.log(req);
   pool.query(`SELECT * FROM screenshots
                 LEFT JOIN subtitles ON screenshots.timestamp
