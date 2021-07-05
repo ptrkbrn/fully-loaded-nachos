@@ -1,21 +1,21 @@
 const express = require('express');
 
 const router = express.Router();
-const { Client } = require('pg');
+// const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 
 router.get('/:episode/:key', (req, res) => {
   const { episode, key } = req.params;
   let caption;
 
-  client.connect();
+  // client.connect();
 
   async function setCaption(rows) {
     caption = rows[0].text;
