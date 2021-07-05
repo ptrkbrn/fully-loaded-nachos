@@ -36,11 +36,13 @@ function SearchBar(props) {
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         })
-          .then((res) => res.json())
-          .then((data) => {
-            setResults(data);
-            setSearching(false);
-          })
+          // .then((res) => res.json())
+          // .then((data) => {
+          //   setResults(data);
+          //   setSearching(false);
+          // })
+          .then((res) => res.text())
+          .then((data) => console.log(data))
           .catch((error) => console.log(error));
       }
     } else {
