@@ -20,39 +20,40 @@ router.get('/:episode/:key', (req, res) => {
     caption = rows[0].text;
     console.log(caption);
   }
-  
-  client.connect();
 
-  client.query(`SELECT * FROM screenshots
-  JOIN subtitles ON screenshots.timestamp
-  BETWEEN subtitles.time_start
-  AND subtitles.time_end
-  WHERE screenshots.episode = $1
-  AND subtitles.episode = screenshots.episode
-  AND screenshots.screenshot_key = $2`,
-  [episode, key],
-  (error, results) => {
-    if (error) {
-      throw error;
-    }
-    setCaption(results.rows)
-    .then(
-        client.query(`SELECT * FROM screenshots
-    RIGHT JOIN subtitles ON screenshots.timestamp
+  client.connect()
+  .then(
+    client.query(`SELECT * FROM screenshots
+    JOIN subtitles ON screenshots.timestamp
     BETWEEN subtitles.time_start
     AND subtitles.time_end
-    WHERE subtitles.episode = screenshots.episode
-    AND subtitles.text = $1`,
-        [caption],
-        (error2, results2) => {
-          if (error2) {
-            throw error;
-          }
-          res.status(200).json(results2.rows);
-          // client.end();
-        }),
-      );
-  });
+    WHERE screenshots.episode = $1
+    AND subtitles.episode = screenshots.episode
+    AND screenshots.screenshot_key = $2`,
+    [episode, key],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      setCaption(results.rows)
+      .then(
+          client.query(`SELECT * FROM screenshots
+      RIGHT JOIN subtitles ON screenshots.timestamp
+      BETWEEN subtitles.time_start
+      AND subtitles.time_end
+      WHERE subtitles.episode = screenshots.episode
+      AND subtitles.text = $1`,
+          [caption],
+          (error2, results2) => {
+            if (error2) {
+              throw error;
+            }
+            res.status(200).json(results2.rows);
+            // client.end();
+          }),
+        );
+    })
+  )
 });
 
 module.exports = router;
