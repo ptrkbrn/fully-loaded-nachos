@@ -12,7 +12,7 @@ const pool = new Pool({
 
 router.get('/:episode/:screenshot_key', (req, res) => {
   const { episode, screenshot_key } = req.params;
-  console.log(req)
+  console.log(req.params);
   let caption;
 
 
@@ -33,8 +33,7 @@ router.get('/:episode/:screenshot_key', (req, res) => {
         throw error;
       }
     setCaption(results.rows)
-    })
-  .then(
+    .then(
       pool.query(`SELECT * FROM screenshots
   RIGHT JOIN subtitles ON screenshots.timestamp
   BETWEEN subtitles.time_start
@@ -50,6 +49,7 @@ router.get('/:episode/:screenshot_key', (req, res) => {
         // client.end();
       }),
     );
+  })
 });
 
 module.exports = router;
