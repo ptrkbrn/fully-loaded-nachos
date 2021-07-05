@@ -28,7 +28,7 @@ function SearchBar(props) {
       // fetches search results from API
       if (query.length > 2) {
         setSearching(true);
-        fetch(`?${url.searchParams}`, {
+        fetch(`search?${url.searchParams}`, {
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
