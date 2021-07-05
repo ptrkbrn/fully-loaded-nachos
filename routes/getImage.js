@@ -35,25 +35,25 @@ router.get('/:episode/:screenshot_key', (req, res) => {
       if (error) {
         throw error;
       }
-      setCaption(results.rows)
-      .then(
-          client.query(`SELECT * FROM screenshots
-      RIGHT JOIN subtitles ON screenshots.timestamp
-      BETWEEN subtitles.time_start
-      AND subtitles.time_end
-      WHERE subtitles.episode = screenshots.episode
-      AND subtitles.text = $1`,
-          [caption],
-          (error2, results2) => {
-            if (error2) {
-              throw error;
-            }
-            res.status(200).json(results2.rows);
-            // client.end();
-          }),
-        );
+    setCaption(results.rows)
     })
   )
+  .then(
+      client.query(`SELECT * FROM screenshots
+  RIGHT JOIN subtitles ON screenshots.timestamp
+  BETWEEN subtitles.time_start
+  AND subtitles.time_end
+  WHERE subtitles.episode = screenshots.episode
+  AND subtitles.text = $1`,
+      [caption],
+      (error2, results2) => {
+        if (error2) {
+          throw error;
+        }
+        res.status(200).json(results2.rows);
+        // client.end();
+      }),
+    );
 });
 
 module.exports = router;
