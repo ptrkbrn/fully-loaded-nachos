@@ -1,11 +1,16 @@
 const express = require('express');
 
 const router = express.Router();
-const pg = require('pg');
+const { Client } = require('pg');
 
-const connection = 'DATABASE_URL';
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-const client = new pg.Client(connection);
+client.connect();
 
 router.get('/:episode/:key', (req, res) => {
   const { episode, key } = req.params;
@@ -46,6 +51,7 @@ router.get('/:episode/:key', (req, res) => {
         }),
       );
   });
+  client.end();
 });
 
 module.exports = router;

@@ -2,11 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 const url = require('url');
-const pg = require('pg');
+const { Client } = require('pg');
 
-const connection = 'DATABASE_URL';
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-const client = new pg.Client(connection);
+client.connect();
 
 router.get('/', (req, res) => {
   const search = url.parse(req.url, true).query.q;
@@ -25,6 +30,7 @@ router.get('/', (req, res) => {
     }
     res.status(200).json(results.rows);
   });
+  client.end()
 });
 
 module.exports = router;
