@@ -26,10 +26,28 @@ function ImageView() {
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
   // on page load, calls API and gets page data
+  document.onload(
+    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // sets current image based on api response
+        setCurrentImage(data.filter((datum) => datum.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10))[0]);
+        // sets related images
+        setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
+      })
+      .catch((error) => console.log(`Error: ${error}`)),
+  );
   useEffect(() => {
     console.log('fetching!');
     console.log(window.location.pathname);
-    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}/`, {
+    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin': '*',
