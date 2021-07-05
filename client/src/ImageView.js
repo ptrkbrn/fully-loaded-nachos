@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import { React, useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { toJpeg } from 'html-to-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,8 +24,8 @@ function ImageView() {
   const [relatedImages, setRelatedImages] = useState([]);
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
-  // const location = useLocation();
-  const fetchUrl = `https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`;
+  const location = useLocation();
+  const fetchUrl = `https://fully-loaded-nachos.herokuapp.com${location.pathname}`;
   // on page load, calls API and gets page data
   useEffect(() => {
     console.log('fetching!');
@@ -45,7 +45,7 @@ function ImageView() {
         setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
       })
       .catch((error) => console.log(`Error: ${error}`));
-  }, []);
+  }, [location]);
   function handleSubmit() {
     // saves image as jpeg
     const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`;
