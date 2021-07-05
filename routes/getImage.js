@@ -10,8 +10,8 @@ const client = new Client({
   }
 });
 
-router.get('/:episode/:key', (req, res) => {
-  const { episode, key } = req.params;
+router.get('/:episode/:screenshot_key', (req, res) => {
+  const { episode, screenshot_key } = req.params;
   console.log(req)
   let caption;
 
@@ -30,7 +30,7 @@ router.get('/:episode/:key', (req, res) => {
     WHERE screenshots.episode = $1
     AND subtitles.episode = screenshots.episode
     AND screenshots.screenshot_key = $2`,
-    [episode, key],
+    [episode, screenshot_key],
     (error, results) => {
       if (error) {
         throw error;
