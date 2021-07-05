@@ -66,7 +66,7 @@ function ImageView() {
         <Row>
           <ImgCol id="target-image">
             <img
-              src={`${currentImage.url}?nocache=true`}
+              src={`${currentImage.url}`}
               alt={currentImage.text}
               style={{ width: '100%' }}
               crossOrigin="anonymous"
