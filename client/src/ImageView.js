@@ -26,7 +26,7 @@ function ImageView() {
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
   // on page load, calls API and gets page data
-  document.onload(
+  window.onload = function () {
     fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`, {
       mode: 'cors',
       headers: {
@@ -42,8 +42,8 @@ function ImageView() {
         // sets related images
         setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
       })
-      .catch((error) => console.log(`Error: ${error}`)),
-  );
+      .catch((error) => console.log(`Error: ${error}`));
+  };
   useEffect(() => {
     console.log('fetching!');
     console.log(window.location.pathname);
