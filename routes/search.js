@@ -14,10 +14,9 @@ const client = new Client({
 client.connect();
 
 router.get('/', (req, res) => {
-  console.log(req.query.q);
-  const search = url.parse(req.url, true).query.q;
+  const search = req.query.q;
   // replace punctuation and whitespace with '%' for broader matching.
-  const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
+  // const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
   // console.log(req);
   client.query(`SELECT * FROM screenshots
                 LEFT JOIN subtitles ON screenshots.timestamp
@@ -25,7 +24,7 @@ router.get('/', (req, res) => {
                 AND subtitles.time_end
                 WHERE subtitles.episode = screenshots.episode
                 AND subtitles.text ILIKE $1`,
-  [`%${scrubbedSearch}%`], (error, results) => {
+  [`%${search}%`], (error, results) => {
     if (error) {
       throw error;
     }
