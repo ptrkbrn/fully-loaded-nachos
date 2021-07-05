@@ -31,8 +31,8 @@ function ImageView() {
     fetch(`http://localhost:9000${window.location.pathname}`, {
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => res.json())
@@ -65,7 +65,12 @@ function ImageView() {
       <Grid>
         <Row>
           <ImgCol id="target-image">
-            <img src={currentImage.url} alt={currentImage.text} style={{ width: '100%' }} />
+            <img
+              src={`${currentImage.url}?nocache=true`}
+              alt={currentImage.text}
+              style={{ width: '100%' }}
+              crossOrigin="anonymous"
+            />
             <Caption
               display={captionDisplay}
               font={captionFont}
