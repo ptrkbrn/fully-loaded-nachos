@@ -37,6 +37,7 @@ function ImageView() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         // sets current image based on api response
         setCurrentImage(data.filter((datum) => datum.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10))[0]);
         // sets related images

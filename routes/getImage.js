@@ -9,10 +9,10 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-client.connect();
 
 router.get('/:episode/:key', (req, res) => {
   const { episode, key } = req.params;
+  console.log(req)
   let caption;
 
 
@@ -20,6 +20,8 @@ router.get('/:episode/:key', (req, res) => {
     caption = rows[0].text;
     console.log(caption);
   }
+  
+  client.connect();
 
   client.query(`SELECT * FROM screenshots
   JOIN subtitles ON screenshots.timestamp
@@ -34,7 +36,7 @@ router.get('/:episode/:key', (req, res) => {
       throw error;
     }
     setCaption(results.rows)
-      .then(
+    .then(
         client.query(`SELECT * FROM screenshots
     RIGHT JOIN subtitles ON screenshots.timestamp
     BETWEEN subtitles.time_start
