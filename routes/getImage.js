@@ -11,7 +11,8 @@ const pool = new Pool({
 });
 
 router.get('/:episode/:screenshot_key', (req, res) => {
-  const { episode, screenshot_key } = req.params;
+  const episode = req.params.episode;
+  const screenshot_key = req.params.screenshot_key;
   console.log(req.params);
   let caption;
 
