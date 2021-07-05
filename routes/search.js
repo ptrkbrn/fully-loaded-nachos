@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
   const search = req.query.q;
   client.connect();
   // replace punctuation and whitespace with '%' for broader matching.
-  // const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
-  // console.log(req);
+  const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
+  console.log(req);
   client.query(`SELECT * FROM screenshots
                 LEFT JOIN subtitles ON screenshots.timestamp
                 BETWEEN subtitles.time_start
@@ -28,10 +28,8 @@ router.get('/', (req, res) => {
       throw error;
     }
     res.status(200).json(results.rows);
-  })
-  .then(
     client.end()
-  );
+  })
 });
 
 module.exports = router;
