@@ -18,6 +18,12 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// serve react files on deployment
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
