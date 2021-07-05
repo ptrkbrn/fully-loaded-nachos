@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
                 AND subtitles.time_end
                 WHERE subtitles.episode = screenshots.episode
                 AND subtitles.text ILIKE $1`,
-  [`%${search}%`], (error, results) => {
+  [`%${scrubbedSearch}%`], (error, results) => {
     if (error) {
       throw error;
     }

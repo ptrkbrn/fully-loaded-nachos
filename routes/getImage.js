@@ -10,12 +10,12 @@ const client = new Client({
   }
 });
 
-client.connect();
 
 router.get('/:episode/:key', (req, res) => {
   const { episode, key } = req.params;
-
   let caption;
+
+  client.connect();
 
   async function setCaption(rows) {
     caption = rows[0].text;
