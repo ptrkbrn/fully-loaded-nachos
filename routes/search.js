@@ -14,6 +14,7 @@ const client = new Client({
 client.connect();
 
 router.get('/', (req, res) => {
+  console.log(req.query.q);
   const search = url.parse(req.url, true).query.q;
   // replace punctuation and whitespace with '%' for broader matching.
   const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
