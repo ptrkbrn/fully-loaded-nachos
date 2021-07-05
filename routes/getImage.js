@@ -1,9 +1,9 @@
 const express = require('express');
 
 const router = express.Router();
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
@@ -20,10 +20,7 @@ router.get('/:episode/:screenshot_key', (req, res) => {
     caption = rows[0].text;
     console.log(caption);
   }
-
-  client.connect()
-  .then(
-    client.query(`SELECT * FROM screenshots
+    pool.query(`SELECT * FROM screenshots
     JOIN subtitles ON screenshots.timestamp
     BETWEEN subtitles.time_start
     AND subtitles.time_end
@@ -37,9 +34,8 @@ router.get('/:episode/:screenshot_key', (req, res) => {
       }
     setCaption(results.rows)
     })
-  )
   .then(
-      client.query(`SELECT * FROM screenshots
+      pool.query(`SELECT * FROM screenshots
   RIGHT JOIN subtitles ON screenshots.timestamp
   BETWEEN subtitles.time_start
   AND subtitles.time_end
