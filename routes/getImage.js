@@ -48,10 +48,10 @@ router.get('/:episode/:key', (req, res) => {
             throw error;
           }
           res.status(200).json(results2.rows);
+          client.end();
         }),
       );
   });
-  client.end();
 });
 
 module.exports = router;
