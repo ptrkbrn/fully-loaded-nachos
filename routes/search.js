@@ -16,7 +16,7 @@ client.connect();
 router.get('/', (req, res) => {
   const search = url.parse(req.url, true).query.q;
   // replace punctuation and whitespace with '%' for broader matching.
-  const scrubbedSearch = search.replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
+  const scrubbedSearch = search.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()" "]/g, '%');
   // console.log(req);
   client.query(`SELECT * FROM screenshots
                 LEFT JOIN subtitles ON screenshots.timestamp
