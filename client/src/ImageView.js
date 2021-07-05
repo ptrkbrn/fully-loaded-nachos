@@ -29,7 +29,7 @@ function ImageView() {
   useEffect(() => {
     console.log('fetching!');
     console.log(window.location.pathname);
-    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`, {
+    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}/`, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin': '*',
