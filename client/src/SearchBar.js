@@ -28,7 +28,7 @@ function SearchBar(props) {
       // fetches search results from API
       if (query.length > 2) {
         setSearching(true);
-        fetch(`search?${url.searchParams}`, {
+        fetch(`http://fully-loaded-nachos.herokuapp.com/search?${url.searchParams}`, {
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
