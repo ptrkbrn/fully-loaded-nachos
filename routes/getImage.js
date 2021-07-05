@@ -1,16 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-const url = require('url');
-const { Pool } = require('pg');
+const pg = require('pg');
 
-const pool = new Pool({
-  user: 'patrickbreen',
-  host: 'localhost',
-  database: 'fully-loaded-nachos',
-  password: 'hustlebone$69',
-  port: 5432,
-});
+const connection = 'DATABASE_URL';
+
+const client = new pg.Client(connection);
 
 router.get('/:episode/:key', (req, res) => {
   const { episode, key } = req.params;
@@ -22,7 +17,7 @@ router.get('/:episode/:key', (req, res) => {
     console.log(caption);
   }
 
-  pool.query(`SELECT * FROM screenshots
+  client.query(`SELECT * FROM screenshots
   JOIN subtitles ON screenshots.timestamp
   BETWEEN subtitles.time_start
   AND subtitles.time_end
@@ -36,7 +31,7 @@ router.get('/:episode/:key', (req, res) => {
     }
     setCaption(results.rows)
       .then(
-        pool.query(`SELECT * FROM screenshots
+        client.query(`SELECT * FROM screenshots
     RIGHT JOIN subtitles ON screenshots.timestamp
     BETWEEN subtitles.time_start
     AND subtitles.time_end
