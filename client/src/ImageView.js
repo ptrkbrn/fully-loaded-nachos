@@ -28,7 +28,7 @@ function ImageView() {
   // on page load, calls API and gets page data
   useEffect(() => {
     console.log('fetching!');
-    fetch(`http://localhost:9000${window.location.pathname}`, {
+    fetch(`${window.location.pathname}`, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin': '*',
