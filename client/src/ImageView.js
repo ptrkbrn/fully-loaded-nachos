@@ -25,10 +25,11 @@ function ImageView() {
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
+  const fetchUrl = `https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`;
   // on page load, calls API and gets page data
   useEffect(() => {
     console.log('fetching!');
-    fetch(`https://fully-loaded-nachos.herokuapp.com${window.location.pathname}`, {
+    fetch(fetchUrl, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin': '*',
