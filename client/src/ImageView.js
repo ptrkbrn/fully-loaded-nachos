@@ -28,6 +28,7 @@ function ImageView() {
   // on page load, calls API and gets page data
   useEffect(() => {
     console.log('fetching!');
+    console.log(location.pathname);
     const fetchUrl = `https://fully-loaded-nachos.herokuapp.com${location.pathname}`;
     fetch(fetchUrl, {
       mode: 'cors',
