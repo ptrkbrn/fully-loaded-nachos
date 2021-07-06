@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-filename-extension */
 import { React, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -23,7 +24,7 @@ const ImageViewSection = styled.section`
 function ImageView(props) {
   const { images } = props;
   const [currentImage, setCurrentImage] = useState(images.filter(
-    (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
+    (image) => image.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10),
   )[0]);
   const [relatedImages, setRelatedImages] = useState([]);
   const [captionDisplay, setCaptionDisplay] = useState('block');
@@ -33,7 +34,7 @@ function ImageView(props) {
   // sets current image
   useEffect(() => {
     setCurrentImage(images.filter(
-      (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
+      (image) => image.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10),
     )[0]);
     // returns to top of page
     window.scrollTo(0, 0);
@@ -41,12 +42,12 @@ function ImageView(props) {
   // sets related images
   useEffect(() => {
     setRelatedImages((images.filter(
-      (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
+      (image) => image.text === currentImage.text && image.screenshot_key !== currentImage.screenshot_key,
     )));
   }, [currentImage]);
   function handleSubmit() {
     // saves image as jpeg
-    const filename = `ITYSM-${currentImage.timestamp}-${Math.floor(Math.random() * 10000)}`;
+    const filename = `ITYSM-${currentImage.screenshot_key}-${Math.floor(Math.random() * 10000)}`;
     toJpeg(document.getElementById('target-image'), { quality: 0.95 })
       .then((dataUrl) => {
         const link = document.createElement('a');
