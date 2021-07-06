@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Caption = styled.p`
     color: white;
-    font-size: 1.4em;
+    font-size: 1.1em;
     position: absolute;
     margin: 0;
     top: 80%;
