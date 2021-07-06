@@ -18,7 +18,7 @@ ReactGA.initialize(TRACKING_ID);
 function App() {
   const [results, setResults] = useState([]);
   const [searching, setSearching] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(null);
   return (
     <Router>
       <GlobalStyle />
