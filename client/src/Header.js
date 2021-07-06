@@ -21,8 +21,12 @@ const StyledHeader = styled.header`
 `;
 
 function Header(props) {
-  const [query, setQuery] = useState(null);
-  const { setResults, setSearching } = props;
+  const {
+    setResults,
+    setSearching,
+    query,
+    setQuery,
+  } = props;
   return (
     <StyledHeader className="App-header">
       <Title setResults={setResults} setQuery={setQuery} query={query} />
@@ -37,6 +41,8 @@ function Header(props) {
   );
 }
 Header.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
   setResults: PropTypes.func.isRequired,
   setSearching: PropTypes.func.isRequired,
 };

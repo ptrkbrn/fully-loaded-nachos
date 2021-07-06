@@ -4,20 +4,23 @@ import PropTypes from 'prop-types';
 import ImageContainer from './ImageContainer';
 
 function Search(props) {
-  const { searching, results } = props;
+  const { searching, results, query } = props;
+  let pageContent;
+  if (searching) {
+    pageContent = <h1>Loading...</h1>;
+  } else if (!searching && query && results.length === 0) {
+    pageContent = <h1>Nothing found!</h1>;
+  } else {
+    pageContent = <ImageContainer images={results} />;
+  }
   return (
-    if (searching) {
-      <h1>Loading...</h1>
-    } else if (!searching && query && results.length === 0) {
-      <h1>Nothing found!</h1>
-    } else {
-      <ImageContainer images={results} />
-    }
+    { pageContent }
   );
 }
 Search.propTypes = {
   searching: PropTypes.bool.isRequired,
   results: PropTypes.arrayOf.isRequired,
+  query: PropTypes.string.isRequired,
 };
 
 export default Search;

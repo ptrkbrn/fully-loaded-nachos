@@ -14,17 +14,23 @@ import Header from './Header';
 function App() {
   const [results, setResults] = useState([]);
   const [searching, setSearching] = useState(false);
+  const [query, setQuery] = useState('');
   return (
     <Router>
       <GlobalStyle />
       <div className="App">
-        <Header setResults={setResults} setSearching={setSearching} />
+        <Header
+          setResults={setResults}
+          setSearching={setSearching}
+          query={query}
+          setQuery={setQuery}
+        />
         <Switch>
           <Route path="/screenshots/:episode/:timestamp">
             <ImageView images={results} />
           </Route>
           <Route exact path="/">
-            <Search results={results} searching={searching} />
+            <Search results={results} searching={searching} query={query} />
           </Route>
         </Switch>
       </div>
