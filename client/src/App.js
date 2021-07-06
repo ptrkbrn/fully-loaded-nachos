@@ -6,10 +6,14 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import GlobalStyle from './GlobalStyle';
 import Search from './Search';
 import ImageView from './ImageView';
 import Header from './Header';
+
+const TRACKING_ID = 'G-DHTRKSW6CP';
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
   const [results, setResults] = useState([]);
