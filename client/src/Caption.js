@@ -10,10 +10,11 @@ const Caption = styled.p`
     transform: translate(-50%, -50%);
     width: 100%;
     font-family: ${(props) => props.font};
+    font-weight: 600;
     -webkit-text-stroke: 1px black;
     display: ${(props) => props.display};
     @media only screen and (min-width: 830px) {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 `;
 
