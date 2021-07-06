@@ -28,24 +28,26 @@ function ImageView() {
   // on page load, calls API and gets page data
   useEffect(() => {
     console.log('fetching!');
-    console.log(location.pathname);
     const fetchUrl = `https://fully-loaded-nachos.herokuapp.com${location.pathname}`;
-    fetch(fetchUrl, {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // sets current image based on api response
-        setCurrentImage(data.filter((datum) => datum.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10))[0]);
-        // sets related images
-        setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
-      })
-      .catch((error) => console.log(`Error: ${error}`));
+    console.log(location.pathname)
+      .then(
+        fetch(fetchUrl, {
+          mode: 'cors',
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            // sets current image based on api response
+            setCurrentImage(data.filter((datum) => datum.screenshot_key === parseInt(window.location.pathname.split('/')[3], 10))[0]);
+            // sets related images
+            setRelatedImages(data.filter((datum) => datum.screenshot_key !== parseInt(window.location.pathname.split('/')[3], 10)));
+          })
+          .catch((error) => console.log(`Error: ${error}`)),
+      );
   }, [location]);
   function handleSubmit() {
     // saves image as jpeg
