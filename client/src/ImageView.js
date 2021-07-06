@@ -25,9 +25,7 @@ function ImageView(props) {
   const [currentImage, setCurrentImage] = useState(images.filter(
     (image) => image.timestamp === parseInt(window.location.pathname.split('/')[3], 10),
   )[0]);
-  const [relatedImages, setRelatedImages] = useState(images.filter(
-    (image) => image.text === currentImage.text && image.timestamp !== currentImage.timestamp,
-  ));
+  const [relatedImages, setRelatedImages] = useState([]);
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
