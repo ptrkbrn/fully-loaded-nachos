@@ -66,6 +66,7 @@ function SearchBar(props) {
     <StyledInput
       onChange={onChange}
       type="text"
+      value={query}
       placeholder="Search by quote (e.g., 'Stanzo brand fedoras,' 'Taffy Lee Fubbins,' 'Shut up, Paul.'"
     />
   );

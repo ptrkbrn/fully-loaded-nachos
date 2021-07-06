@@ -6,9 +6,13 @@ import ImageContainer from './ImageContainer';
 function Search(props) {
   const { searching, results } = props;
   return (
-    searching
-      ? <h1>Loading...</h1>
-      : <ImageContainer images={results} />
+    if (searching) {
+      <h1>Loading...</h1>
+    } else if (!searching && query && results.length === 0) {
+      <h1>Nothing found!</h1>
+    } else {
+      <ImageContainer images={results} />
+    }
   );
 }
 Search.propTypes = {
