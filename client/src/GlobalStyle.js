@@ -11,6 +11,9 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.5em;
         font-family: 'Cooper Black';
     }
+    a {
+        color: white;
+    }
 `;
 
 export default GlobalStyle;
