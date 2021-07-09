@@ -12,7 +12,7 @@ import ImageContainer from './ImageContainer';
 import ControlPanel from './ControlPanel';
 import Caption from './Caption';
 import {
-  Grid, Row, ImgCol,
+  Grid, Row, Col, ImgCol,
 } from './Layout';
 
 const ImageViewSection = styled.section`
@@ -30,7 +30,7 @@ function ImageView(props) {
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
-  console.log(currentImage);
+  let tapOrClick = '';
   // sets current image
   useEffect(() => {
     setCurrentImage(images.filter(
@@ -55,6 +55,11 @@ function ImageView(props) {
         link.href = dataUrl;
         link.click();
       });
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      tapOrClick = 'Click';
+    } else {
+      tapOrClick = 'Tap';
+    }
   }
   return (
     <ImageViewSection>
@@ -65,21 +70,30 @@ function ImageView(props) {
       </StyledLink>
       <Grid>
         <Row>
-          <ImgCol id="target-image">
-            <img
-              src={`${currentImage.url}?nocache=true`}
-              alt={currentImage.text}
-              style={{ width: '100%' }}
-              crossOrigin="anonymous"
-            />
-            <Caption
-              display={captionDisplay}
-              font={captionFont}
-              contentEditable
-            >
-              {currentImage.text}
-            </Caption>
-          </ImgCol>
+          <Col>
+            <ImgCol id="target-image">
+              <img
+                src={`${currentImage.url}?nocache=true`}
+                alt={currentImage.text}
+                style={{ width: '100%' }}
+                crossOrigin="anonymous"
+              />
+              <Caption
+                display={captionDisplay}
+                font={captionFont}
+                contentEditable
+              >
+                {currentImage.text}
+              </Caption>
+            </ImgCol>
+            {captionDisplay === 'block' && (
+            <p>
+              {tapOrClick}
+              {' '}
+              text to edit.
+            </p>
+            )}
+          </Col>
           <ControlPanel
             captionDisplay={captionDisplay}
             setCaptionDisplay={setCaptionDisplay}

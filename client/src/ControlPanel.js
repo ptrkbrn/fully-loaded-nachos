@@ -36,7 +36,7 @@ function ControlPanel(props) {
             <ToggleWrapper>
               <Toggle
                 checked={captionFont === 'Cooper Black'}
-                onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Arial Black' : 'Cooper Black')}
+                onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Open Sans' : 'Cooper Black')}
                 labelLeft="Fancy font"
               />
             </ToggleWrapper>
