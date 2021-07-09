@@ -18,14 +18,14 @@ function About() {
       <h2>Who made this?</h2>
       <p>
         I did. My name is&nbsp;
-        <a href="https//www.ptrkbrn.com">Patrick Breen</a>
+        <a href="https://www.ptrkbrn.com">Patrick Breen</a>
         .
       </p>
       <h2>What&apos;s your stack?</h2>
       <p>Postgres/Node/Express/React. Deployed on Heroku, static image hosting on Backblaze B2.</p>
       <h2>Can I see your code?</h2>
       <p>
-        <a href="https://wwww.https://github.com/ptrkbrn/fully-loaded-nachos">Sure.</a>
+        <a href="https://github.com/ptrkbrn/fully-loaded-nachos">Sure.</a>
       </p>
       <h2>Are you affiliated with Netflix or Tim Robinson?</h2>
       <p>Absolutely not.</p>
