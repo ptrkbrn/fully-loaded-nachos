@@ -30,14 +30,17 @@ function ControlPanel(props) {
           />
         </ToggleWrapper>
       </div>
-      <div style={{ visibilty: captionDisplay === 'block' ? 'visible' : 'hidden' }}>
-        <ToggleWrapper>
-          <Toggle
-            checked={captionFont === 'Cooper Black'}
-            onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Open Sans' : 'Cooper Black')}
-            labelLeft="Fancy font"
-          />
-        </ToggleWrapper>
+      <div>
+        { captionDisplay === 'block'
+            && (
+            <ToggleWrapper>
+              <Toggle
+                checked={captionFont === 'Cooper Black'}
+                onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Open Sans' : 'Cooper Black')}
+                labelLeft="Fancy font"
+              />
+            </ToggleWrapper>
+            )}
       </div>
       <div style={{ width: '100%' }}>
         <Button onClick={() => handleSubmit()}>Download</Button>
