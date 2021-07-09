@@ -30,7 +30,7 @@ function ImageView(props) {
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
-  let tapOrClick = '';
+  const tapOrClick = '';
   // sets current image
   useEffect(() => {
     setCurrentImage(images.filter(
@@ -55,11 +55,6 @@ function ImageView(props) {
         link.href = dataUrl;
         link.click();
       });
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      tapOrClick = 'Click';
-    } else {
-      tapOrClick = 'Tap';
-    }
   }
   return (
     <ImageViewSection>
@@ -87,7 +82,7 @@ function ImageView(props) {
               </Caption>
             </ImgCol>
             {captionDisplay === 'block' && (
-            <p>{`${tapOrClick} text to edit.`}</p>
+            <p style={{ visibility: captionDisplay }}>Click caption to edit.</p>
             )}
           </Col>
           <ControlPanel

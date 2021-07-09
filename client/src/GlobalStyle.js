@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     body {
         background-color: #282c34;
+        color: white;
     }
     h1 {
         color: white;
