@@ -87,11 +87,7 @@ function ImageView(props) {
               </Caption>
             </ImgCol>
             {captionDisplay === 'block' && (
-            <p>
-              {tapOrClick}
-              {' '}
-              text to edit.
-            </p>
+            <p>{`${tapOrClick} text to edit.`}</p>
             )}
           </Col>
           <ControlPanel
