@@ -36,7 +36,11 @@ function About() {
       </h2>
       <a href="mailto:hi@ptrkbrn.com">hi@ptrkbrn.com</a>
       <br />
-      <a href="https://www.twitter.com/ptrkbrn">@ptrkbrn</a>
+      <p>
+        Also on twitter:&nbsp;
+        <a href="https://www.twitter.com/ptrkbrn">@ptrkbrn</a>
+      </p>
+
     </AboutSection>
   );
 }
