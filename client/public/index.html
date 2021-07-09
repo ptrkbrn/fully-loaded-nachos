@@ -10,6 +10,12 @@
 
       gtag('config', 'UA-123769106-3');
     </script>
+    <!-- script for dealing with the 100vh on mobile quirk -->
+    <script>
+        // calculate innerHeight and save as variable
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
