@@ -8,6 +8,4 @@
 .App {
   text-align: center;
   height: 100vh;
-  /* deals with 100vh quirk on mobile devices */
-  height: calc(var(--vh, 1vh) * 100);
 }
