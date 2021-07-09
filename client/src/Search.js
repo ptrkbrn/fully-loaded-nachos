@@ -2,11 +2,11 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
 import ImageContainer from './ImageContainer';
+import Footer from './Footer';
 
 function Search(props) {
   const { searching, results, query } = props;
   let pageContent = <h1>Search a quote to get started.</h1>;
-  console.log(pageContent);
   if (searching) {
     pageContent = <h1>Loading...</h1>;
   } else if (!searching && query && results.length === 0) {
@@ -15,7 +15,10 @@ function Search(props) {
     pageContent = <ImageContainer images={results} />;
   }
   return (
-    pageContent
+    <>
+      {pageContent}
+      <Footer />
+    </>
   );
 }
 Search.propTypes = {

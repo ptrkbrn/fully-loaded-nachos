@@ -12,7 +12,6 @@ import Search from './Search';
 import About from './About.js';
 import ImageView from './ImageView';
 import Header from './Header';
-import Footer from './Footer';
 
 const TRACKING_ID = 'G-DHTRKSW6CP';
 ReactGA.initialize(TRACKING_ID);
@@ -42,7 +41,6 @@ function App() {
             <Search results={results} searching={searching} query={query} />
           </Route>
         </Switch>
-        {!query && results.length === 0 && !searching && <Footer />}
       </div>
     </Router>
   );
