@@ -30,7 +30,6 @@ function ImageView(props) {
   const [captionDisplay, setCaptionDisplay] = useState('block');
   const [captionFont, setCaptionFont] = useState('Cooper Black');
   const location = useLocation();
-  const tapOrClick = '';
   // sets current image
   useEffect(() => {
     setCurrentImage(images.filter(
