@@ -9,7 +9,7 @@ import {
 import ReactGA from 'react-ga';
 import GlobalStyle from './GlobalStyle';
 import Search from './Search';
-import About from './About';
+import About from './About.js';
 import ImageView from './ImageView';
 import Header from './Header';
 
