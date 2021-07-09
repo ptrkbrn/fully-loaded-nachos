@@ -4,8 +4,12 @@ import styled from 'styled-components';
 
 const AboutSection = styled.section`
   padding: 2em;
+  margin: 0 2em;
   box-sizing: border-box;
   text-align: left;
+  @media only screen and (min-width: 830px) {
+      margin: 0 5em;
+  }
 `;
 
 function About() {
@@ -13,7 +17,7 @@ function About() {
     <AboutSection>
       <h2>Who made this?</h2>
       <p>
-        I did. My name is
+        I did. My name is&nbsp;
         <a href="https//www.ptrkbrn.com">Patrick Breen</a>
         .
       </p>
