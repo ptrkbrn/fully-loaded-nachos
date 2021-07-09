@@ -30,7 +30,8 @@ function About() {
         and what&apos;s more, you&apos;ve executed it terribly.
         How can I tell you about this personally?
       </h2>
-      <a href="mailto:hi@ptrkbrn.com">hi@ptrkbrn.com</a><br/>
+      <a href="mailto:hi@ptrkbrn.com">hi@ptrkbrn.com</a>
+      <br />
       <a href="https://www.twitter.com/ptrkbrn">@ptrkbrn</a>
     </AboutSection>
   );
