@@ -1,9 +1,16 @@
 /* eslint-disable react/jsx-filename-extension */
 import { React } from 'react';
+import styled from 'styled-components';
+
+const AboutSection = styled.section`
+  padding: 2em;
+  box-sizing: border-box;
+  text-align: left;
+`;
 
 function About() {
   return (
-    <section>
+    <AboutSection>
       <h2>Who made this?</h2>
       <p>
         I did. My name is
@@ -25,7 +32,7 @@ function About() {
       </h2>
       <a href="mailto:hi@ptrkbrn.com">hi@ptrkbrn.com</a>
       <a href="https://www.twitter.com/ptrkbrn">@ptrkbrn</a>
-    </section>
+    </AboutSection>
   );
 }
 
