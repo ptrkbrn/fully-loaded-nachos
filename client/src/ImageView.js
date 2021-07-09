@@ -81,7 +81,7 @@ function ImageView(props) {
               </Caption>
             </ImgCol>
             {captionDisplay === 'block' && (
-            <p style={{ visibility: captionDisplay }}>Click caption to edit.</p>
+            <p style={{ visibility: captionDisplay === 'block' ? 'visible' : 'hidden' }}>Click caption to edit.</p>
             )}
           </Col>
           <ControlPanel
