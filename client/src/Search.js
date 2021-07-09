@@ -17,7 +17,7 @@ function Search(props) {
   return (
     <>
       {pageContent}
-      <Footer />
+      {!query && !searching && results.length === 0 && <Footer />}
     </>
   );
 }
