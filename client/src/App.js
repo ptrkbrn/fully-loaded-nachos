@@ -31,14 +31,14 @@ function App() {
           setQuery={setQuery}
         />
         <Switch>
+          <Route exact path="/about">
+            <About />
+          </Route>
           <Route path="/screenshots/:episode/:timestamp">
             <ImageView images={results} />
           </Route>
           <Route exact path="/">
             <Search results={results} searching={searching} query={query} />
-          </Route>
-          <Route exact path="/about">
-            <About />
           </Route>
         </Switch>
       </div>
