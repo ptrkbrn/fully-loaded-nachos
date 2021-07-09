@@ -30,10 +30,9 @@ function ControlPanel(props) {
           />
         </ToggleWrapper>
       </div>
-      <div>
+      <div style={{ visibilty: captionDisplay === 'block' ? 'visible' : 'hidden' }}>
         <ToggleWrapper>
           <Toggle
-            visibilty={captionDisplay === 'block' ? 'visible' : 'hidden'}
             checked={captionFont === 'Cooper Black'}
             onChange={() => setCaptionFont(captionFont === 'Cooper Black' ? 'Open Sans' : 'Cooper Black')}
             labelLeft="Fancy font"
