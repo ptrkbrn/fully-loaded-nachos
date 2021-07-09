@@ -7,7 +7,12 @@ const StyledFooter = styled.footer`
     padding: 1em;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 `;
 
 function Footer() {
