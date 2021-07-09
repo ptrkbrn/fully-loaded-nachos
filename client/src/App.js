@@ -9,6 +9,7 @@ import {
 import ReactGA from 'react-ga';
 import GlobalStyle from './GlobalStyle';
 import Search from './Search';
+import About from './About';
 import ImageView from './ImageView';
 import Header from './Header';
 
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Search results={results} searching={searching} query={query} />
+          </Route>
+          <Route exact path="/about">
+            <About />
           </Route>
         </Switch>
       </div>
