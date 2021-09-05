@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
                 BETWEEN subtitles.time_start
                 AND subtitles.time_end
                 WHERE subtitles.episode = screenshots.episode
-                AND subtitles.text ILIKE $1`,
+                AND subtitles.text ILIKE $1 LIMIT 100`,
   [`%${scrubbedSearch}%`], (error, results) => {
     if (error) {
       throw error;

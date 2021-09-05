@@ -19,7 +19,7 @@ function SearchBar(props) {
   } = props;
   const location = useLocation();
   const history = useHistory();
-  useEffect(() => {
+  const doSearch = () => {
     const url = new URL(window.location);
     url.searchParams.set('q', query);
     // updates url query param based on search term
@@ -49,6 +49,12 @@ function SearchBar(props) {
       window.history.pushState({}, '', url);
       document.querySelector('input[type="text"]').value = '';
     }
+  };
+  // Debounce the doSearch function to only run when the user stops typing for 200ms
+  // Ref: https://typeofnan.dev/debouncing-with-react-hooks/
+  useEffect(() => {
+    const timer = setTimeout(doSearch, 200);
+    return () => clearTimeout(timer);
   }, [query, location]);
   const onChange = (e) => {
     // live search, sets query as text in search bar changes
